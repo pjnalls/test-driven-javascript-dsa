@@ -41,4 +41,5 @@ exports.runTestsTo = (solution, testCases) => {
         "\x1b[31m",
         `✖ ${failureCount} of ${testCases.length} tests for '${solution.name}' solution failed.`
       );
+  console.log();
 };
