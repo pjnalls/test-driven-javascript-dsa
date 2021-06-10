@@ -15,6 +15,7 @@ const {
 } = require("../../data-structures/queues/priority-queue");
 const testingUtils = require("../../utilities/testing-utils");
 const testCases = [
+  // Test Case 0: Get shortest path to the goal as expected.
   [
     [
       "Fullstack",
@@ -45,6 +46,32 @@ const testCases = [
     ].toString()}];
     Time = 14 minutes`,
   ],
+
+  // Test Case 1: Don't make it to the goal.
+  [
+    [
+      "Fullstack",
+      "Starbucks",
+      "Insomnia Cookies",
+      "Cafe Grumpy",
+      "Dublinger",
+      "Dig Inn",
+    ],
+    [
+      ["Fullstack", "Dublinger", 2],
+      ["Fullstack", "Dig Inn", 7],
+      ["Fullstack", "Starbucks", 6],
+      ["Dublinger", "Starbucks", 3],
+      ["Dublinger", "Dig Inn", 4],
+      ["Dublinger", "Insomnia Cookies", 7],
+      ["Starbucks", "Insomnia Cookies", 6],
+      ["Cafe Grumpy", "Insomnia Cookies", 5],
+      ["Cafe Grumpy", "Dig Inn", 9],
+    ],
+    "Fullstack",
+    "Neverlands",
+    "AStar did not reach the goal",
+  ],
 ];
 function AStar() {}
 
@@ -56,11 +83,11 @@ AStar.prototype.reconstructPath = function (
   const setPath = new Set();
   const last = current;
   const keys = Object.keys(cameFrom);
-  
+
   for (const key of keys) {
     current = cameFrom[key];
     setPath.add(current);
-  };
+  }
 
   setPath.add(last);
 
@@ -68,7 +95,7 @@ AStar.prototype.reconstructPath = function (
     Time = ${time} minutes`;
 };
 
-/** 
+/**
  * This is a basic `heuristic` method
  * for demo purposes.
  */
@@ -133,7 +160,7 @@ AStar.prototype.search = function (graphInfo) {
       }
     });
   }
-  return "AStar did not reach the goal.";
+  return "AStar did not reach the goal";
 };
 
 const testAStar = (testCase) => {
