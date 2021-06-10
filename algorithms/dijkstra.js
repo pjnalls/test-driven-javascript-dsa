@@ -1,6 +1,6 @@
 "use strict";
 
-const { Graph }= require("../data-structures/graphs/graph");
+const { Graph } = require("../data-structures/graphs/graph");
 const { PriorityQueue } = require("../data-structures/queues/priority-queue");
 const testingUtils = require("../utilities/testing-utils");
 const testCases = [
@@ -30,56 +30,53 @@ const testCases = [
       "Fullstack",
       "Dublinger",
       "Insomnia Cookies",
-      "Cafe Grumpy"
+      "Cafe Grumpy",
     ].toString()}];
     Time = 14 minutes`,
   ],
 ];
 const dijkstra = (graphInfo) => {
-    const nodes = graphInfo[0], 
-      edges = graphInfo[1], 
-      start = graphInfo[2], 
-      end = graphInfo[3];
+  const nodes = graphInfo[0],
+    edges = graphInfo[1],
+    start = graphInfo[2],
+    end = graphInfo[3];
 
-    const graph = new Graph();
-    
-    nodes.forEach((node) => graph.addNode(node));
-    edges.forEach((edge) => graph.addEdge(...edge));
+  const graph = new Graph();
 
-    const pq = new PriorityQueue(),
-      distances = {},
-      previous = {};
+  nodes.forEach((node) => graph.addNode(node));
+  edges.forEach((edge) => graph.addEdge(...edge));
 
-    graph.nodes.forEach((node) => {
-      distances[node] = Infinity;
+  const pq = new PriorityQueue(),
+    distances = {},
+    previous = {};
+
+  graph.nodes.forEach((node) => {
+    distances[node] = Infinity;
+  });
+  distances[start] = 0;
+  pq.enqueue([start, 0]);
+
+  while (!pq.isEmpty()) {
+    const curr = pq.dequeue()[0];
+    graph.adjacencyList[curr].forEach((neighbor) => {
+      let distance = distances[curr] + neighbor.weight;
+      if (distance < distances[neighbor.node]) {
+        distances[neighbor.node] = distance;
+        previous[neighbor.node] = curr;
+        pq.enqueue([neighbor.node, distance]);
+      }
     });
-    distances[start] = 0;
-    pq.enqueue([start, 0]);
+  }
 
-    while (!pq.isEmpty()) {
-      const curr = pq.dequeue()[0];
-      graph.adjacencyList[curr]
-        .forEach((neighbor) => {
-        let distance = 
-          distances[curr] + neighbor.weight;
-        if (distance < distances[neighbor.node]) {
-          distances[neighbor.node] = distance;
-          previous[neighbor.node] = curr;
-          pq.enqueue([neighbor.node, distance])
-        }
-      });
-    }
+  let path = [end],
+    prev = end;
+  while (prev !== start) {
+    path.unshift(previous[prev]);
+    prev = previous[prev];
+  }
 
-    let path = [end],
-      prev = end;
-    while (prev !== start) {
-      path.unshift(previous[prev]);
-      prev = previous[prev];
-    }
-    
-    return `Path = [${path}];
+  return `Path = [${path}];
     Time = ${distances[end]} minutes`;
-  };
+};
 
-  testingUtils.runTestsTo(dijkstra, testCases);
-  
+testingUtils.runTestsTo(dijkstra, testCases);
