@@ -37,6 +37,14 @@ PriorityQueue.prototype.dequeue = function () {
   return this.collection.shift();
 };
 
+PriorityQueue.prototype.remove = function (element) {
+  for (let i = 0; i < this.collection.length; i++) {
+    if (this.collection[i][0] === element) {
+      this.collection.splice(i, 1)
+    };
+  }
+};
+
 PriorityQueue.prototype.isEmpty = function () {
   if (this.collection.length === 0) return true;
   else false;
