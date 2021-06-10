@@ -1,3 +1,11 @@
+/**
+ * 
+ * Credits to Adrienne Johnson for original `PriorityQueue`
+ * implementation which you can view here:
+ * https://medium.com/@adriennetjohnson/a-walkthrough-of-dijkstras-algorithm-in-javascript-e94b74192026
+ * 
+ */
+
 "use strict";
 
 const testingUtils = require("../../utilities/testing-utils");

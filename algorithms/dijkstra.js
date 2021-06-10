@@ -1,3 +1,12 @@
+/**
+ * 
+ * Credits to Adrienne Johnson for original 
+ * `Graph`, `PriorityQueue`, `dijkstra`'s Algorithm, and test case
+ * implementation which you can view here:
+ * https://medium.com/@adriennetjohnson/a-walkthrough-of-dijkstras-algorithm-in-javascript-e94b74192026
+ * 
+ */
+
 "use strict";
 
 const { Graph } = require("../data-structures/graphs/graph");
