@@ -1,9 +1,14 @@
 const testingUtils = require("../../utilities/testing-utils");
 const testCases = [
   [
-    ["Fullstack", "Starbucks", 
- "Insomnia Cookies", "Cafe Grumpy",
- "Dublinger", "Dig Inn"], 
+    [
+      "Fullstack",
+      "Starbucks",
+      "Insomnia Cookies",
+      "Cafe Grumpy",
+      "Dublinger",
+      "Dig Inn",
+    ],
     [
       ["Fullstack", "Dublinger", 2],
       ["Fullstack", "Dig Inn", 7],
@@ -13,17 +18,22 @@ const testCases = [
       ["Dublinger", "Insomnia Cookies", 7],
       ["Starbucks", "Insomnia Cookies", 6],
       ["Cafe Grumpy", "Insomnia Cookies", 5],
-      ["Cafe Grumpy", "Dig Inn", 9]
+      ["Cafe Grumpy", "Dig Inn", 9],
     ],
-    `Graph.nodes = [${["Fullstack", "Starbucks", 
-    "Insomnia Cookies", "Cafe Grumpy",
-    "Dublinger", "Dig Inn"].toString()}]`
-  ]
+    `Graph.nodes = [${[
+      "Fullstack",
+      "Starbucks",
+      "Insomnia Cookies",
+      "Cafe Grumpy",
+      "Dublinger",
+      "Dig Inn",
+    ].toString()}]`,
+  ],
 ];
 
-function Graph () {
+function Graph() {
   this.nodes = [];
-  this.adjacencyList = {}
+  this.adjacencyList = {};
 }
 
 Graph.prototype.addNode = function (node) {
@@ -31,14 +41,9 @@ Graph.prototype.addNode = function (node) {
   this.adjacencyList[node] = [];
 };
 
-Graph.prototype.addEdge = 
-  function (node1, node2, weight) {
-    this.adjacencyList[node1].push(
-      { node: node2, weight: weight }
-    );
-    this.adjacencyList[node2].push(
-      { node: node1, weight: weight }
-    );
+Graph.prototype.addEdge = function (node1, node2, weight) {
+  this.adjacencyList[node1].push({ node: node2, weight: weight });
+  this.adjacencyList[node2].push({ node: node1, weight: weight });
 };
 
 const graphCreated = (testCase) => {
@@ -46,7 +51,7 @@ const graphCreated = (testCase) => {
   testCase[0].forEach((node) => graph.addNode(node));
   testCase[1].forEach((edge) => graph.addEdge(...edge));
   return `Graph.nodes = [${graph.nodes.toString()}]`;
-}
+};
 
 testingUtils.runTestsTo(graphCreated, testCases);
 
