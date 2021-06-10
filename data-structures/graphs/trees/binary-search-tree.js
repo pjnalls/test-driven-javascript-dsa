@@ -1,4 +1,4 @@
-const testingUtils = require("../../utilities/testing-utils");
+const testingUtils = require("../../../utilities/testing-utils");
 const testCases = [
   [1, 3, 21, 8, 1, 13, 5, 34, "in-order", "1, 1, 3, 5, 8, 13, 21, 34"],
   [1, 3, 21, 8, 1, 13, 5, 34, "pre", "1, 1, 3, 5, 8, 13, 21, 34"],
