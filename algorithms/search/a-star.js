@@ -43,7 +43,7 @@ const testCases = [
       "Dublinger",
       "Insomnia Cookies",
       "Cafe Grumpy",
-    ].toString()}];
+    ]}];
     Time = 14 minutes`,
   ],
 
@@ -70,13 +70,13 @@ const testCases = [
     ],
     "Fullstack",
     "Neverlands",
-    "AStar did not reach the goal",
+    "`AStar` did not reach the goal",
   ],
 ];
 function AStar() {}
 
 AStar.prototype.reconstructPath = function (
-  cameFrom = new Set(),
+  cameFrom = {},
   current = "",
   time = ""
 ) {
@@ -160,7 +160,7 @@ AStar.prototype.search = function (graphInfo) {
       }
     });
   }
-  return "AStar did not reach the goal";
+  return "`AStar` did not reach the goal";
 };
 
 const testAStar = (testCase) => {
