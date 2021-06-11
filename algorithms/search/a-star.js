@@ -73,6 +73,7 @@ const testCases = [
     "`AStar` did not reach the goal",
   ],
 ];
+
 function AStar() {}
 
 AStar.prototype.reconstructPath = function (
