@@ -163,10 +163,7 @@ AStar.prototype.search = function (graphInfo) {
   return "`AStar` did not reach the goal";
 };
 
-const testAStar = (testCase) => {
-  const aStar = new AStar();
-  return aStar.search(testCase);
-};
+const testAStar = (testCase) => AStar.prototype.search(testCase);
 
 testingUtils.runTestsTo(testAStar, testCases);
 
