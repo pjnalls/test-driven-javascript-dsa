@@ -40,7 +40,7 @@ const testCases = [
       "Dublinger",
       "Insomnia Cookies",
       "Cafe Grumpy",
-    ].toString()}];
+    ]}];
     Time = 14 minutes`,
   ],
 ];
