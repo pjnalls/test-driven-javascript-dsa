@@ -100,7 +100,7 @@ AStar.prototype.heuristic = function (current = 0) {
   return current * guess;
 };
 
-AStar.prototype.search = function (graphInfo = [[], [[]], "", ""]) {
+AStar.prototype.search = function (graphInfo = [[""], [["", "", 0]], "", ""]) {
   // Create `graph` with `graphInfo`.
   const nodes = graphInfo[0],
     edges = graphInfo[1],
@@ -159,7 +159,7 @@ AStar.prototype.search = function (graphInfo = [[], [[]], "", ""]) {
   return "`AStar` did not reach the goal";
 };
 
-const testAStar = (testCase = [[], [[]], "", ""]) =>
+const testAStar = (testCase = [[""], [["", "", 0]], "", ""]) =>
   AStar.prototype.search(testCase);
 
 testingUtils.runTestsTo(testAStar, testCases);
