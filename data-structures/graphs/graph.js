@@ -56,13 +56,44 @@ Graph.prototype.addEdge = function (node1, node2, weight) {
   this.adjacencyList[node2].push({ node: node1, weight: weight });
 };
 
-const graphCreated = (testCase) => {
+Graph.prototype.removeNode = function (node) {
+  this.nodes.forEach((n, index) => {
+    if (node === n) this.nodes.splice(index, 1);
+  });
+  delete this.adjacencyList[node];
+};
+
+Graph.prototype.removeEdge = function (node1, node2) {
+  this.adjacencyList[node1].forEach((n, index) => {
+    if (node2 === n.node) 
+      this.adjacencyList[node1].splice(index, 1); 
+  });
+  this.adjacencyList[node2].forEach((n, index) => {
+    if (node1 === n.node) 
+      this.adjacencyList[node2].splice(index, 1); 
+  });
+}
+
+const deleteNodesAndEdges = (graph) => {
+  graph.addNode("Remove this node.");
+  graph.addNode("Remove this other node.");
+  graph.addEdge("Remove this node.", "Fullstack", 9);
+  graph.addEdge("Remove this node.", "Remove this other node.", 9);
+  graph.removeNode("Remove this other node.");
+  graph.removeEdge("Remove this node.", "Fullstack");
+  graph.removeNode("Remove this node.");;
+};
+
+const createGraph = (testCase) => {
   const graph = new Graph();
   testCase[0].forEach((node) => graph.addNode(node));
   testCase[1].forEach((edge) => graph.addEdge(...edge));
+
+  deleteNodesAndEdges(graph);
+
   return `Graph.nodes = [${graph.nodes.toString()}]`;
 };
 
-testingUtils.runTestsTo(graphCreated, testCases);
+testingUtils.runTestsTo(createGraph, testCases);
 
 module.exports = exports = { Graph };
